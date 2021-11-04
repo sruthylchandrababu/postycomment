@@ -1,0 +1,17 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+<div class="bgded overlay" style="background-image:url('{% static 'images/bg.jpg' %}');">
+  <div id="pageintro" class="hoc clear">
+<article>
+      <h3 class="heading">QUALITY POST HERE</h3>
+      <p>Register with us and post your amazing comment here.</p>
+    <a href="{% url 'register' %}" class="btn btn-primary">Register Now</a>
+      <footer>
+
+      </footer>
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+{% endblock %}

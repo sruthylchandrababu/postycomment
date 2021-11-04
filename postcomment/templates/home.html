@@ -1,0 +1,42 @@
+{% load static %}
+<html lang="">
+<head>
+<title>comment post</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css'%}" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+
+  <div class="bgded overlay">
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear"></div>
+    </div>
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+            <div id="logo" class="fl_left">
+                <h1><a href="/">COMMENT POSIT</a></h1>
+            </div>
+          <nav id="mainav" class="fl_right">
+             <ul class="clear">
+               <li class="active"><a href="/">Home</a></li>
+                  {% if user.is_authenticated %}
+               <li><h4>Haii..{{user.first_name}}</h4></li>
+               <li><a class="active" href="{% url 'logout' %}">Logout</a>
+                 {% else %}
+               <li><a class="active" href="{% url 'login' %}">Login</a>
+              <li><a class="active" href="{% url 'register' %}">Register</a>
+                 {% endif %}
+             </li>
+             </ul>
+          </nav>
+        </header>
+    </div>
+  </div>
+  {% block content %}
+  {% endblock %}
+  <script src="{% static 'hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>

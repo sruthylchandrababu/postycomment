@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+  margin: 25px 0 22px 5;
+  color:#000
+}
+</style>
+<div class="col-md-6">
+        <h4>TASK COMPLETED</h4>
+        {% for i in obj1 %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{i.name}}</h5>
+                <p><b>{{i.priority}}</b></p>
+                <p><b>{{i.date}}</b></p>
+
+                  <a class="btn btn-danger" href="">DELETE</a>
+                <a class="btn btn-success" href="">UPDATE</a>
+
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+{% endblock %}

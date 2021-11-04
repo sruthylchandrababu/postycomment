@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{i.post_name}}</h5>
+        <p><b>{{i.post}}</b></p>
+        <p><b>{{i.date}}</b></p>
+        <a class="btn btn-danger" href="{% url 'cbvdelete' i.id %}">DELETE</a>
+        <a class="btn btn-success" href="{% url 'cbvupdate' i.id %}">UPDATE</a>
+    </div>
+</div>
+{% endblock %}

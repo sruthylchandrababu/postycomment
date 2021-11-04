@@ -1,0 +1,80 @@
+def post_view(request):
+    obj1=Post.objects.all()
+    if request.method=="POST":
+        name=request.POST.get('post_name')
+        post=request.POST.get('post')
+        date=request.POST.get('date')
+        obj=Post(post_name=name,post=post,date=date)
+        obj.save();
+    return render(request,'post.html',{'obj1':obj1})
+
+
+
+
+
+
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+  margin: 25px 0 22px 5;
+  color:#000
+}
+input[type=text], input[type=password], textarea,select,date {
+  width: 75%;
+  padding: 15px;
+  margin: 25px 0 22px 5;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  color:#000
+}
+p{
+align:right
+}
+</style>
+<div class="container-fluid">
+
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <div class="banner">-->
+<!--                <div class="banner-text">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <p> <a href="view.html" class="btn btn-primary">VIEW COMMENT</a></p>
+    <div class="row">
+        <div class="col-md-6">
+          <center> <h4>ADD YOUR POST</h4></center>
+
+           <form method="post" class="3-3 shadow">
+              {% csrf_token %}
+              <div class="form-group">
+                 <label>Commenting Area : </label>
+                      <select id="post_name" name="post_name">
+                          <option value="helth" selected>Helth</option>
+                          <option value="filims">Filims</option>
+                          <option value="politics">politics</option>
+                          <option value="turism">Turism</option>
+                      </select>
+              </div>
+              <div class="form-group">
+                 <label>Type your post: </label>
+                 <textarea id="post" name="post" rows="5" cols="50"></textarea>
+            </div>
+               <div class="form-group">
+                   <label>Date: </label>
+                   <input type="date" placeholder="date" name="date" size="15" class="form-control"><br>
+               </div>
+              <center> <button type="submit" class="btn btn-primary">Submit</button>
+           </center>
+           </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

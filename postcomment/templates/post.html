@@ -1,0 +1,72 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+  margin: 25px 0 22px 5;
+  color:#000;
+  font-size:18
+}
+input[type=text], input[type=password], textarea,select,date {
+  width: 75%;
+  padding: 15px;
+  margin: 25px 0 22px 5;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  color:#000
+}
+</style>
+<br><br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h6><center><b>POST YOUR COMMENT</b></center></h6>
+        </div>
+    </div>
+    <br><br>
+    <div style="width: 50%; float:left">
+        <h4><b>ADD POST</b></h4>
+        <form method="post" class="3-3 shadow">
+              {% csrf_token %}
+              <div class="form-group">
+                 <label>Commenting Area : </label>
+                      <select id="post_name" name="post_name">
+                          <option value="helth" selected>Helth</option>
+                          <option value="filims">Filims</option>
+                          <option value="politics">politics</option>
+                          <option value="turism">Turism</option>
+                      </select>
+              </div>
+              <div class="form-group">
+                 <label>Type your post: </label>
+                 <textarea id="post" name="post" rows="5" cols="50"></textarea>
+            </div>
+               <div class="form-group">
+                   <label>Date: </label>
+                   <input type="date" placeholder="date" name="date" size="15" class="form-control"><br>
+               </div>
+              <center> <button type="submit" class="btn btn-primary">Submit</button>
+           </center>
+        </form>
+    </div>
+
+   <div style="width: 50%; float:right">
+       <h4><b>COMMITTED POST</b></h4>
+       {% for i in obj1 %}
+       <table>
+           <tr><td><b>{{i.post_name}}</b></td></tr>
+           <tr><td>{{i.post}}</td></tr>
+           <tr><td>{{i.date}}</td></tr>
+           <tr><td colspan="2"><a class="btn btn-danger" href="{% url 'cbvdelete' i.id %}">DELETE</a>
+                <a class="btn btn-success" href="{% url 'cbvupdate' i.id %}">UPDATE</a></td> </tr>
+       </table>
+        <br>
+        {% endfor %}
+   </div>
+
+</div>
+{% endblock %}
